@@ -23,13 +23,23 @@ $ npm install lvivier/modella-sse
 
 **modella-sse** comes in two parts, a [modella](https://github.com/modella/modela) plugin for the browser and an Express/Connect middleware.
 
+```js
+var model = require('modella')
+var sse = require('modella-sse')
+var ajax = require('modella-ajax')
+
+var User = model('User')
+  .use(ajax('/users'))
+  .use(sse('/users/:primary'))
+  .attr('_id')
+  .attr('name')
+  /* ... */
 ```
-TODO usage example
-```
+
 
 ## API
 
-### model([opts])
+### model(url[, opts])
 
 Modella plugin. Pass the return value to `Model.use()`. `opts` include:
 

@@ -1,9 +1,12 @@
 
-module.exports = function (opts) {
+module.exports = function (url, opts) {
   opts = opts || {}
 
   return function (Model) {
     Model.on('initialize', init)
+
+    // TODO more robust
+    url = url || (Model.baseUrl + '/:primary')
 
     function init (model) {
       if (opts.subscribe) model.subscribe()
@@ -11,8 +14,11 @@ module.exports = function (opts) {
 
     Model.prototype.subscribe = function () {
       var model = this
+      var u = url.replace(/:(\w+)/g, function (m, attr) {
+        return model[attr]()
+      })
 
-      this.sse = new EventSource('/subscribe') // TODO URLs
+      this.sse = new EventSource(u)
       this.sse.addEventListener('change', change)
       this.sse.addEventListener('remove', remove)
 
