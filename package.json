@@ -1,6 +1,7 @@
 {
   "name": "modella-sse",
   "version": "0.0.1",
+  "main": "lib/server.js",
   "dependencies": {
     "uid": "0.0.2"
   }

@@ -1,6 +1,6 @@
 {
   "name": "modella-sse",
   "version": "0.0.1",
-  "main": "client.js",
-  "scripts": ["client.js"]
+  "main": "lib/client.js",
+  "scripts": ["lib/client.js"]
 }
